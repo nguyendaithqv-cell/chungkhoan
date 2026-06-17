@@ -1,0 +1,101 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User's financial data, portfolio, and transaction history.",
+      "type": "object",
+      "properties": {
+        "cash": { "type": "number" },
+        "portfolio": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "symbol": { "type": "string" },
+              "quantity": { "type": "number" }
+            }
+          }
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "message": { "type": "string" },
+              "timestamp": { "type": "number" },
+              "type": { "type": "string", "enum": ["buy", "sell"] }
+            }
+          }
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "type": { "type": "string", "enum": ["deposit", "withdrawal"] },
+              "amount": { "type": "number" },
+              "timestamp": { "type": "number" },
+              "accountId": { "type": "string" },
+              "accountName": { "type": "string" }
+            }
+          }
+        },
+        "bankAccounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "bankName": { "type": "string" },
+              "accountNumber": { "type": "string" },
+              "ownerName": { "type": "string" },
+              "isDefault": { "type": "boolean" }
+            }
+          }
+        },
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "symbol": { "type": "string" },
+              "type": { "type": "string", "enum": ["buy", "sell"] },
+              "targetPrice": { "type": "number" },
+              "quantity": { "type": "number" },
+              "status": { "type": "string", "enum": ["pending", "filled", "cancelled"] },
+              "timestamp": { "type": "number" }
+            }
+          }
+        },
+        "gameBalances": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        },
+        "gameHistory": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "gameId": { "type": "string" },
+              "betAmount": { "type": "number" },
+              "multiplier": { "type": "number" },
+              "profit": { "type": "number" },
+              "timestamp": { "type": "number" }
+            }
+          }
+        }
+      },
+      "required": ["cash"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Individual user data records."
+    }
+  }
+}
