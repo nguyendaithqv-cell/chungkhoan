@@ -1,0 +1,6 @@
+{
+  "name": "Virtual Trader",
+  "description": "A virtual stock trading application with real market data simulation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
